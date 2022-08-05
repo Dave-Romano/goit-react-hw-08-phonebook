@@ -2,20 +2,32 @@ import ContactList from "./ContactList/ContactList";
 import Form from "./Form/Form";
 import Filter from "./Filter/Filter";
 import Navigation from "./Navigation/Navigation";
+import { useSelector } from "react-redux";
+import { usersSelectors } from "../redux/users";
 import { lazy, Suspense } from "react";
+
+import { Routes, Route, Link } from "react-router-dom";
 
 import LoginPage from "../pages/loginPage";
 import RegisterPage from "../pages/registerPage";
 import ProfilePage from "../pages/profilePage";
 
 const App = () => {
+  const isLoggedIn = useSelector(usersSelectors.getUserLogeedIn);
+  console.log("LOGIN: ", isLoggedIn);
+
   return (
     <>
-      <LoginPage />
       <Navigation />
-      {/* <Routes>
-        <Route path="/" element={<Form />}></Route>
-      </Routes> */}
+      {/* {isLoggedIn ? <ProfilePage /> : <LoginPage />} */}
+      {/* <LoginPage /> */}
+
+      <Routes>
+        <Route path="/" element={<LoginPage />}></Route>
+        <Route path="/register" element={<RegisterPage />}></Route>
+        <Route path="/contacts" element={<ProfilePage />}></Route>
+        <Route path="*" element={<ProfilePage />}></Route>
+      </Routes>
       {/* <Form />
       <Filter />
       <ContactList /> */}

@@ -1,13 +1,15 @@
 import axios from "axios";
 import { API_BASE_URL } from "../configs/api.config";
 
-export const regNewUser = async () => {
-  const { data } = await axios.post(`${API_BASE_URL}/users/signup`);
+export const regNewUser = async (userData) => {
+  const { data } = await axios.post(`${API_BASE_URL}/users/signup`, userData);
+  console.log(data);
   return data;
 };
 
-export const loginUser = async () => {
-  const { data } = await axios.post(`${API_BASE_URL}/users/login`);
+export const loginUser = async (userData) => {
+  const { data } = await axios.post(`${API_BASE_URL}/users/login`, userData);
+  console.log(data);
   return data;
 };
 

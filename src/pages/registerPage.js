@@ -1,14 +1,34 @@
 import { useState } from "react";
+import { regNewUser } from "../api/index";
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const contact = {
+      name: name,
+      email: email,
+      password: password,
+    };
+
+    regNewUser(contact);
+    setName("");
+    setEmail("");
+    setPassword("");
+  };
+
+  // Albert
+  // geo@gmail.com
+  // qwerty101
+
   return (
     <>
       <h1>Create new account</h1>
-      <form action="submit">
+      <form onSubmit={handleSubmit}>
         <label htmlFor="form-name-id">User name:</label>
         <br />
         <input

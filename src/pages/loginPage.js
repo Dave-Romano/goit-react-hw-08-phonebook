@@ -1,13 +1,29 @@
 import { useState } from "react";
+import { loginUser } from "../api/index";
+import { useDispatch } from "react-redux";
+import { usersOperations } from "../redux/users";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const contact = {
+      email,
+      password,
+    };
+    dispatch(usersOperations.loginUser(contact));
+    // loginUser(contact);
+  };
+
   return (
     <>
       <h1>Welcome! Please, log in</h1>
-      <form action="submit">
+      <form onSubmit={handleSubmit}>
         <label htmlFor="form-email-id">Email:</label>
         <br />
         <input
