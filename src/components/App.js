@@ -11,6 +11,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import LoginPage from "../pages/loginPage";
 import RegisterPage from "../pages/registerPage";
 import ProfilePage from "../pages/profilePage";
+import NotFpundPage from "../pages/notFoundPage";
 
 const App = () => {
   const isLoggedIn = useSelector(usersSelectors.getUserLogeedIn);
@@ -26,7 +27,7 @@ const App = () => {
         <Route path="/" element={<LoginPage />}></Route>
         <Route path="/register" element={<RegisterPage />}></Route>
         <Route path="/contacts" element={<ProfilePage />}></Route>
-        <Route path="*" element={<ProfilePage />}></Route>
+        <Route path="*" element={<NotFpundPage />}></Route>
       </Routes>
       {/* <Form />
       <Filter />

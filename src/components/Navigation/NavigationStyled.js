@@ -6,7 +6,7 @@ export const NavigationStyled = styled.div`
   }
 
   .link {
-    color: white;
+    color: black;
     margin-right: 10px;
   }
 `;

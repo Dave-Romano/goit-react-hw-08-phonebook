@@ -1,32 +1,40 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { NavigationStyled } from "./NavigationStyled";
 
 import { useDispatch } from "react-redux";
 import { usersOperations } from "../../redux/users";
+import { useState } from "react";
 
 const Navigation = () => {
-  const setActive = ({ isActive }) => (isActive ? "active-link" : "link");
+  const [isActive, setIsActive] = useState(false);
+  const setActive = (isActive) => (isActive ? "active-link" : "link");
 
   const dispatch = useDispatch();
 
   dispatch(usersOperations.logoutUser);
 
+  const activeFn = ({ isActive }) => (isActive ? "active-link" : "link");
+
   return (
     <>
       <NavigationStyled>
         <nav>
-          <Link to="/contacts" className={setActive}>
+          <NavLink to="/contacts" className={activeFn}>
             contacts
-          </Link>
-          <Link to="/register" className={setActive}>
+          </NavLink>
+          <br />
+          <NavLink to="/register" className={activeFn}>
             registration
-          </Link>
-          <Link to="/login" className={setActive}>
+          </NavLink>
+          <br />
+          <NavLink to="/login" className={activeFn}>
             login
-          </Link>
-          <Link to="/info" className={setActive}>
+          </NavLink>
+          <br />
+          <NavLink to="/info" className={activeFn}>
             info
-          </Link>
+          </NavLink>
+          <br />
 
           <button onClick={() => dispatch(usersOperations.logoutUser())}>
             Log out
