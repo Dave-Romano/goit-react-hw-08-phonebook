@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { regNewUser } from "../api/index";
+
+import { usersOperations } from "../redux/users";
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
@@ -15,7 +16,7 @@ const RegisterPage = () => {
       password: password,
     };
 
-    regNewUser(contact);
+    usersOperations.registerUser(contact);
     setName("");
     setEmail("");
     setPassword("");
@@ -73,7 +74,7 @@ const RegisterPage = () => {
       </form>
       <p>
         if you already have account, please
-        <a href="http://localhost:3000/contacts"> log in</a>
+        <a href="http://localhost:3000/"> log in</a>
       </p>
     </>
   );

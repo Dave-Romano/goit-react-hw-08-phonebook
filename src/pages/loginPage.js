@@ -52,7 +52,7 @@ const LoginPage = () => {
         <button type="submit">log in</button>
       </form>
 
-      <a href="http://localhost:3000/contacts"> create new account</a>
+      <a href="http://localhost:3000/register"> create new account</a>
     </>
   );
 };

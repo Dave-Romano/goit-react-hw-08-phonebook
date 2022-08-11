@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { usersSelectors } from "../redux/users/";
 import { useEffect } from "react";
 
-const RequireUser = ({ children }) => {
+const PrivateRoute = ({ children }) => {
   const location = useLocation();
   const isLoggedIn = useSelector(usersSelectors.getUserLogeedIn);
   useEffect(() => {
@@ -16,6 +16,7 @@ const RequireUser = ({ children }) => {
   }
 
   return children;
+  return;
 };
 
-export { RequireUser };
+export { PrivateRoute };

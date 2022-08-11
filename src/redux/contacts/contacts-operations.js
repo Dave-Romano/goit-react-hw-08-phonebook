@@ -1,17 +1,25 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import * as apiFuncs from "../../api/index";
+import axios from "axios";
 
 export const getContacts = createAsyncThunk("contacts/Get", async () => {
-  const contacts = await apiFuncs.getData();
-  return contacts;
+  const { data } = await axios.get("/contacts");
+  return data;
 });
 
-export const postContacts = createAsyncThunk("contacts/Post", async (data) => {
-  const contact = await apiFuncs.postData(data);
-  return contact;
-});
+export const postContacts = createAsyncThunk(
+  "contacts/Post",
+  async (contact) => {
+    const { data } = await axios.post("/contacts", contact);
+    return data;
+  }
+);
 
 export const deleteContact = createAsyncThunk("contacts/Delete", async (id) => {
-  const contacts = await apiFuncs.deleteData(id);
-  return contacts;
+  const { data } = await axios.delete(`/contacts/${id}`);
+  return data;
+});
+
+export const updateContact = createAsyncThunk("contacts/Update", async (id) => {
+  const { data } = await axios.patch(`/contacts/${id}`);
+  return data;
 });

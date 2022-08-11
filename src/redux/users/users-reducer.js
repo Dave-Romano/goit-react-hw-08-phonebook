@@ -10,11 +10,13 @@ const userInfo = createReducer(userData, {
     return action.payload.user;
   },
   [user.logoutUser.fulfilled]: () => userData,
+  [user.getUserInfo.rejected]: () => userData,
 });
 
 const userToken = createReducer(null, {
   [user.loginUser.fulfilled]: (_, { payload }) => payload.token,
   [user.logoutUser.fulfilled]: () => null,
+  [user.getUserInfo.rejected]: () => null,
 });
 
 const isLoggedIn = createReducer(false, {

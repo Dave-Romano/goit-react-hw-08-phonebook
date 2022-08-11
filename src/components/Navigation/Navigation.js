@@ -5,21 +5,25 @@ import { useDispatch } from "react-redux";
 import { usersOperations } from "../../redux/users";
 import { useState } from "react";
 
-const Navigation = () => {
-  const [isActive, setIsActive] = useState(false);
-  const setActive = (isActive) => (isActive ? "active-link" : "link");
+import { useSelector } from "react-redux";
+import { usersSelectors } from "../../redux/users";
 
+import AuthorizedNavigation from "./LoginCheck/AuthorizedNavigation";
+import UnautorizedNavigation from "./LoginCheck/UnautorizedNavigation";
+
+const Navigation = () => {
   const dispatch = useDispatch();
 
   dispatch(usersOperations.logoutUser);
+  const isLoggedIn = useSelector(usersSelectors.getUserLogeedIn);
 
   const activeFn = ({ isActive }) => (isActive ? "active-link" : "link");
 
   return (
-    <>
-      <NavigationStyled>
-        <nav>
-          <NavLink to="/contacts" className={activeFn}>
+    <NavigationStyled>
+      {isLoggedIn ? <AuthorizedNavigation /> : <UnautorizedNavigation />}
+
+      {/* <NavLink to="/contacts" className={activeFn}>
             contacts
           </NavLink>
           <br />
@@ -27,7 +31,7 @@ const Navigation = () => {
             registration
           </NavLink>
           <br />
-          <NavLink to="/login" className={activeFn}>
+          <NavLink to="/" className={activeFn}>
             login
           </NavLink>
           <br />
@@ -38,11 +42,8 @@ const Navigation = () => {
 
           <button onClick={() => dispatch(usersOperations.logoutUser())}>
             Log out
-          </button>
-        </nav>
-        <Outlet />
-      </NavigationStyled>
-    </>
+          </button> */}
+    </NavigationStyled>
   );
 };
 
