@@ -8,8 +8,10 @@ import {
 const entities = createReducer([], {
   [getContacts.fulfilled]: (_, action) => action.payload,
   [postContacts.fulfilled]: (state, action) => [...state, action.payload],
-  [deleteContact.fulfilled]: (state, action) =>
-    state.filter((e) => e.id !== action.payload.id),
+  [deleteContact.fulfilled]: (state, action) => {
+    console.log("JERONIMO:", action.payload);
+    return state.filter((e) => e.id !== action.payload);
+  },
 });
 
 const isLoading = createReducer(false, {

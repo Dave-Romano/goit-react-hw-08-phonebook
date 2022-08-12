@@ -12,14 +12,15 @@ import { usersSelectors, usersOperations } from "../redux/users";
 import { lazy, Suspense, useEffect, useState } from "react";
 import { PrivateRoute } from "../routes/PrivateRoutes";
 
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import LoginPage from "../pages/loginPage";
 import RegisterPage from "../pages/registerPage";
-import ProfilePage from "../pages/profilePage";
+import ContactsPage from "../pages/contactsPage";
 import NotFpundPage from "../pages/notFoundPage";
 
 import { PrivateRoutes } from "../routes/PrivateRoutes";
+import { PublicRoute, PublicRoutes } from "../routes/PublicRoutes";
 
 const App = () => {
   const [token, setToken] = useState("");
@@ -38,16 +39,24 @@ const App = () => {
     <>
       <Navigation />
       <Routes>
+        <Route path="/" element={<Navigate to="/login" />}></Route>
         <Route
           path={"/contacts"}
           element={
-            <PrivateRoute>
-              <ProfilePage />
-            </PrivateRoute>
+            <PrivateRoutes>
+              <ContactsPage />
+            </PrivateRoutes>
           }
         />
+        <Route
+          path="/login"
+          element={
+            <PublicRoutes>
+              <LoginPage />
+            </PublicRoutes>
+          }
+        ></Route>
         <Route path="/register" element={<RegisterPage />}></Route>
-        <Route path="/login" element={<LoginPage />}></Route>
         <Route path="*" element={<NotFpundPage />}></Route>
       </Routes>
     </>

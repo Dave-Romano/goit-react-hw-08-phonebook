@@ -20,6 +20,7 @@ const userToken = createReducer(null, {
 });
 
 const isLoggedIn = createReducer(false, {
+  [user.getUserInfo.fulfilled]: () => true,
   [user.loginUser.fulfilled]: () => true,
   [user.logoutUser.fulfilled]: () => false,
 });

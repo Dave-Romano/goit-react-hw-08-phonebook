@@ -74,7 +74,7 @@ const RegisterPage = () => {
       </form>
       <p>
         if you already have account, please
-        <a href="http://localhost:3000/"> log in</a>
+        <a href="http://localhost:3000/login"> log in</a>
       </p>
     </>
   );

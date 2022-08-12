@@ -2,14 +2,14 @@ import ContactList from "../components/ContactList/ContactList";
 import Filter from "../components/Filter/Filter";
 import Form from "../components/Form/Form";
 
-const ProfilePage = () => {
+const ContactsPage = () => {
   return (
     <>
       <Form />
-      <ContactList />
       <Filter />
+      <ContactList />
     </>
   );
 };
 
-export default ProfilePage;
+export default ContactsPage;

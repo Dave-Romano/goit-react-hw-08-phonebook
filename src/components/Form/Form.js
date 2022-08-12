@@ -5,13 +5,13 @@ import { contactsOperations } from "../../redux/contacts";
 
 const Form = () => {
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [number, setNumber] = useState("");
 
   const dispatch = useDispatch();
 
   const stateReset = () => {
     setName("");
-    setPhone("");
+    setNumber("");
   };
 
   const handleSubmit = (e) => {
@@ -19,7 +19,7 @@ const Form = () => {
 
     const contact = {
       name,
-      phone,
+      number,
     };
 
     dispatch(contactsOperations.postContacts(contact));
@@ -52,8 +52,8 @@ const Form = () => {
               id="form-number-id"
               type="tel"
               name="number"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              value={number}
+              onChange={(e) => setNumber(e.target.value)}
               pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
               title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
               required
