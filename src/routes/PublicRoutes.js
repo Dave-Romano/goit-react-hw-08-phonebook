@@ -8,7 +8,7 @@ const PublicRoutes = ({ children }) => {
   const isLoggedIn = useSelector(usersSelectors.getUserLogeedIn);
 
   if (isLoggedIn === true) {
-    console.log("PRV ROUTE: user is loggedIn");
+    // console.log("PRV ROUTE: user is loggedIn");
     return <Navigate to="/contacts" state={{ from: location }} />;
   }
 

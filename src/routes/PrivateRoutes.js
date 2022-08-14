@@ -8,7 +8,7 @@ const PrivateRoutes = ({ children }) => {
   const isLoggedIn = useSelector(usersSelectors.getUserLogeedIn);
 
   if (isLoggedIn === false) {
-    console.log("PRV ROUTE: user is not loggedIn");
+    // console.log("PRV ROUTE: user is not loggedIn");
     return <Navigate to="/login" state={{ from: location }} />;
   }
 

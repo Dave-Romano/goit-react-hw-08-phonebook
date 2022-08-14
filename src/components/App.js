@@ -26,7 +26,7 @@ const App = () => {
   const [token, setToken] = useState("");
 
   const isLoggedIn = useSelector(usersSelectors.getUserLogeedIn);
-  console.log("LOGIN: ", isLoggedIn);
+  // console.log("LOGIN: ", isLoggedIn);
   const verification = isLoggedIn ? "/contacts" : "/";
   const dispatch = useDispatch();
 

@@ -6,7 +6,7 @@ const userData = { email: null, name: null };
 const userInfo = createReducer(userData, {
   [user.getUserInfo.fulfilled]: (_, action) => action.payload,
   [user.loginUser.fulfilled]: (_, action) => {
-    console.log("REDUSER: ", action.payload);
+    // console.log("REDUSER: ", action.payload);
     return action.payload.user;
   },
   [user.logoutUser.fulfilled]: () => userData,

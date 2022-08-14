@@ -8,6 +8,7 @@ const ContactList = () => {
   const [modalActive, setModalActive] = useState(false);
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
+  const [tmpId, setTmpId] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -22,39 +23,57 @@ const ContactList = () => {
     dispatch(contactsOperations.deleteContact(id));
   };
 
+  const handleUpdateContact = (e) => {
+    e.preventDefault();
+
+    const contact = {
+      name,
+      number,
+    };
+    const id = tmpId;
+
+    console.log("requestID:", id, "requestUpdatedContact:", contact);
+    dispatch(contactsOperations.updateContact({ id, contact }));
+    setName("");
+    setNumber("");
+    setTmpId(null);
+  };
+
   return (
     <ContactListStyled className="Contact">
       <label>Contact list:</label>
       <Modal active={modalActive} setActive={setModalActive}>
         <h2>Edit contact</h2>
-        <label htmlFor="form-name-id">Name:</label>
-        <br />
-        <input
-          id="form-name-id"
-          type="text"
-          name="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-          required
-        />
-        <br />
+        <form onSubmit={handleUpdateContact}>
+          <label htmlFor="form-name-id">Name:</label>
+          <br />
+          <input
+            id="form-name-id"
+            type="text"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+            required
+          />
+          <br />
 
-        <label htmlFor="form-number-id">Number:</label>
-        <br />
-        <input
-          id="form-number-id"
-          type="tel"
-          name="number"
-          value={number}
-          onChange={(e) => setNumber(e.target.value)}
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
-          required
-        />
-        <br />
-        <button type="submit">add contact</button>
+          <label htmlFor="form-number-id">Number:</label>
+          <br />
+          <input
+            id="form-number-id"
+            type="tel"
+            name="number"
+            value={number}
+            onChange={(e) => setNumber(e.target.value)}
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+            required
+          />
+          <br />
+          <button type="submit">update contact</button>
+        </form>
       </Modal>
       {visibleContacts.length > 0 && (
         <ul className="Contact__list">
@@ -66,7 +85,10 @@ const ContactList = () => {
               <button
                 type="button"
                 className="Contact__button"
-                onClick={() => setModalActive(true)}
+                onClick={() => {
+                  setTmpId(contact.id);
+                  return setModalActive(true);
+                }}
               >
                 Edit
               </button>
