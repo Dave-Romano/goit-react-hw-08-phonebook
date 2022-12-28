@@ -11,22 +11,22 @@ export const postContacts = createAsyncThunk(
   "contacts/Post",
   async (contact, { getState }) => {
     const state = getState();
-    const isfound = state.find((item) => item.name === contact.name || item.number === contact.number)
-    
-     const { data } = await axios.post("/contacts", contact);
-      // return data;
-    
-      
-      //    if (item.name === contact.name) {
-      //      alert("This name is already exist in contact list");
-      //      return state;
-      //    } else if (item.number === contact.number) {
-      //      alert("This number is already exist in contact list");
-      //      return state;
-      //    } else {
-      //     
-      //    }
-    });
+    const isfound = state.find(
+      (item) => item.name === contact.name || item.number === contact.number
+    );
+
+    const { data } = await axios.post("/contacts", contact);
+    // return data;
+
+    //    if (item.name === contact.name) {
+    //      alert("This name is already exist in contact list");
+    //      return state;
+    //    } else if (item.number === contact.number) {
+    //      alert("This number is already exist in contact list");
+    //      return state;
+    //    } else {
+    //
+    //    }
   }
 );
 
